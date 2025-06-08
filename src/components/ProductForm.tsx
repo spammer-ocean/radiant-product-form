@@ -102,8 +102,8 @@ const ProductForm = () => {
 
   return (
     <Card className="w-full max-w-4xl mx-auto bg-card border-border shadow-lg">
-      <CardHeader className="bg-primary/5 border-b border-border">
-        <CardTitle className="text-2xl font-bold text-foreground flex items-center gap-2">
+      <CardHeader className="bg-muted/50 border-b border-border">
+        <CardTitle className="text-2xl font-bold text-card-foreground flex items-center gap-2">
           <div className="w-3 h-3 bg-primary rounded-full"></div>
           Article Information Sheet
         </CardTitle>
@@ -112,105 +112,105 @@ const ProductForm = () => {
         {/* Form Fields Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <Label htmlFor="reNumber" className="text-sm font-medium text-foreground">
+            <Label htmlFor="reNumber" className="text-sm font-medium text-card-foreground">
               RE Number *
             </Label>
             <Input
               id="reNumber"
               value={formData.reNumber}
               onChange={(e) => handleInputChange('reNumber', e.target.value)}
-              className="bg-background border-input focus:border-ring focus:ring-ring"
+              className="bg-background border-border focus:border-ring focus:ring-ring"
               placeholder="Enter RE Number"
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="oemNumber" className="text-sm font-medium text-foreground">
+            <Label htmlFor="oemNumber" className="text-sm font-medium text-card-foreground">
               OEM Number
             </Label>
             <Input
               id="oemNumber"
               value={formData.oemNumber}
               onChange={(e) => handleInputChange('oemNumber', e.target.value)}
-              className="bg-background border-input focus:border-ring focus:ring-ring"
+              className="bg-background border-border focus:border-ring focus:ring-ring"
               placeholder="Enter OEM Number"
             />
           </div>
 
           <div className="space-y-2 md:col-span-2">
-            <Label htmlFor="description" className="text-sm font-medium text-foreground">
+            <Label htmlFor="description" className="text-sm font-medium text-card-foreground">
               Description *
             </Label>
             <Textarea
               id="description"
               value={formData.description}
               onChange={(e) => handleInputChange('description', e.target.value)}
-              className="bg-background border-input focus:border-ring focus:ring-ring min-h-[100px]"
+              className="bg-background border-border focus:border-ring focus:ring-ring min-h-[100px]"
               placeholder="Enter product description"
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="weight" className="text-sm font-medium text-foreground">
+            <Label htmlFor="weight" className="text-sm font-medium text-card-foreground">
               Weight
             </Label>
             <Input
               id="weight"
               value={formData.weight}
               onChange={(e) => handleInputChange('weight', e.target.value)}
-              className="bg-background border-input focus:border-ring focus:ring-ring"
+              className="bg-background border-border focus:border-ring focus:ring-ring"
               placeholder="Enter weight (e.g., 2.5 kg)"
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="packaging" className="text-sm font-medium text-foreground">
+            <Label htmlFor="packaging" className="text-sm font-medium text-card-foreground">
               Packaging
             </Label>
             <Input
               id="packaging"
               value={formData.packaging}
               onChange={(e) => handleInputChange('packaging', e.target.value)}
-              className="bg-background border-input focus:border-ring focus:ring-ring"
+              className="bg-background border-border focus:border-ring focus:ring-ring"
               placeholder="Enter packaging details"
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="oemName" className="text-sm font-medium text-foreground">
+            <Label htmlFor="oemName" className="text-sm font-medium text-card-foreground">
               OEM Name *
             </Label>
             <Input
               id="oemName"
               value={formData.oemName}
               onChange={(e) => handleInputChange('oemName', e.target.value)}
-              className="bg-background border-input focus:border-ring focus:ring-ring"
+              className="bg-background border-border focus:border-ring focus:ring-ring"
               placeholder="Enter OEM Name"
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="groupProduct" className="text-sm font-medium text-foreground">
+            <Label htmlFor="groupProduct" className="text-sm font-medium text-card-foreground">
               Group/Product
             </Label>
             <Input
               id="groupProduct"
               value={formData.groupProduct}
               onChange={(e) => handleInputChange('groupProduct', e.target.value)}
-              className="bg-background border-input focus:border-ring focus:ring-ring"
+              className="bg-background border-border focus:border-ring focus:ring-ring"
               placeholder="Enter group or product category"
             />
           </div>
 
           <div className="space-y-2 md:col-span-2">
-            <Label htmlFor="modelsSuitable" className="text-sm font-medium text-foreground">
+            <Label htmlFor="modelsSuitable" className="text-sm font-medium text-card-foreground">
               Models Suitable Applications
             </Label>
             <Textarea
               id="modelsSuitable"
               value={formData.modelsSuitable}
               onChange={(e) => handleInputChange('modelsSuitable', e.target.value)}
-              className="bg-background border-input focus:border-ring focus:ring-ring min-h-[80px]"
+              className="bg-background border-border focus:border-ring focus:ring-ring min-h-[80px]"
               placeholder="Enter applicable models and applications"
             />
           </div>
@@ -218,12 +218,12 @@ const ProductForm = () => {
 
         {/* Photo Upload Section */}
         <div className="space-y-4">
-          <Label className="text-sm font-medium text-foreground">Add Product Photo</Label>
+          <Label className="text-sm font-medium text-card-foreground">Add Product Photo</Label>
           <div
             className={`border-2 border-dashed rounded-lg p-8 text-center transition-all duration-200 ${
               isDragOver
-                ? 'border-primary bg-primary/5'
-                : 'border-muted-foreground/25 hover:border-primary/50 hover:bg-primary/5'
+                ? 'border-primary bg-primary/10'
+                : 'border-border hover:border-primary/50 hover:bg-muted/50'
             }`}
             onDrop={handleDrop}
             onDragOver={handleDragOver}
@@ -241,7 +241,7 @@ const ProductForm = () => {
                     variant="outline"
                     size="sm"
                     onClick={() => document.getElementById('file-upload')?.click()}
-                    className="text-muted-foreground border-muted-foreground/25 hover:border-primary hover:text-primary"
+                    className="border-border hover:border-primary hover:text-primary"
                   >
                     <Upload className="w-4 h-4 mr-2" />
                     Replace Image
@@ -250,7 +250,7 @@ const ProductForm = () => {
                     variant="outline"
                     size="sm"
                     onClick={() => setUploadedImage(null)}
-                    className="text-destructive border-destructive/25 hover:border-destructive hover:text-destructive"
+                    className="text-destructive border-destructive/50 hover:border-destructive hover:bg-destructive/10"
                   >
                     Remove Image
                   </Button>
@@ -260,7 +260,7 @@ const ProductForm = () => {
               <div className="space-y-4">
                 <Image className="w-16 h-16 mx-auto text-muted-foreground" />
                 <div className="space-y-2">
-                  <p className="text-foreground font-medium">
+                  <p className="text-card-foreground font-medium">
                     Drag and drop your product image here
                   </p>
                   <p className="text-sm text-muted-foreground">
@@ -270,7 +270,7 @@ const ProductForm = () => {
                 <Button
                   variant="outline"
                   onClick={() => document.getElementById('file-upload')?.click()}
-                  className="text-primary border-primary/25 hover:border-primary hover:bg-primary/5"
+                  className="border-primary/50 hover:border-primary hover:bg-primary/10 text-primary"
                 >
                   <Upload className="w-4 h-4 mr-2" />
                   Choose File
