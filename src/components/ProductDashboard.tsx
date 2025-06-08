@@ -1,8 +1,9 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import ProductCard from './ProductCard';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Package } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Package, Search } from 'lucide-react';
 
 interface Product {
   id: string;
@@ -18,7 +19,7 @@ interface Product {
 }
 
 interface ProductDashboardProps {
-  products: Product[];
+  products?: Product[];
 }
 
 // Sample data for demonstration
@@ -59,6 +60,22 @@ const sampleProducts: Product[] = [
 ];
 
 const ProductDashboard = ({ products = sampleProducts }: ProductDashboardProps) => {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const filteredProducts = products.filter((product) => {
+    const searchLower = searchTerm.toLowerCase();
+    return (
+      product.reNumber.toLowerCase().includes(searchLower) ||
+      product.oemNumber?.toLowerCase().includes(searchLower) ||
+      product.description.toLowerCase().includes(searchLower) ||
+      product.oemName.toLowerCase().includes(searchLower) ||
+      product.groupProduct?.toLowerCase().includes(searchLower) ||
+      product.modelsSuitable?.toLowerCase().includes(searchLower) ||
+      product.weight?.toLowerCase().includes(searchLower) ||
+      product.packaging?.toLowerCase().includes(searchLower)
+    );
+  });
+
   return (
     <div className="space-y-6">
       <Card className="bg-card border-border shadow-lg">
@@ -68,18 +85,31 @@ const ProductDashboard = ({ products = sampleProducts }: ProductDashboardProps) 
             Product Dashboard
           </CardTitle>
           <p className="text-muted-foreground">
-            {products.length} product{products.length !== 1 ? 's' : ''} available
+            {filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''} found
           </p>
+          
+          <div className="relative mt-4">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Input
+              type="text"
+              placeholder="Search products by RE number, OEM, description, brand, group, models..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-10 bg-background border-input"
+            />
+          </div>
         </CardHeader>
         <CardContent className="p-0">
-          {products.length === 0 ? (
+          {filteredProducts.length === 0 ? (
             <div className="p-8 text-center">
               <Package className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-              <p className="text-muted-foreground">No products found</p>
+              <p className="text-muted-foreground">
+                {searchTerm ? `No products found matching "${searchTerm}"` : 'No products found'}
+              </p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-              {products.map((product) => (
+              {filteredProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>
